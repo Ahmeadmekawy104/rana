@@ -5,13 +5,10 @@
 
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-<title>For Rana 🖤</title>
-
+<title>For Lugain 🖤</title>
 
 <style>
 
@@ -25,16 +22,12 @@
 
 html,
 body {
-
     margin: 0;
-
     width: 100%;
     height: 100%;
-
 }
 
 body {
-
     overflow: hidden;
 
     font-family:
@@ -45,15 +38,13 @@ body {
     color: #ead9dd;
 
     background:
-
         radial-gradient(
             circle at 50% 45%,
-            #260711 0%,
-            #130308 38%,
-            #070103 72%,
+            #3b0916 0%,
+            #1b040b 35%,
+            #080103 70%,
             #020102 100%
         );
-
 }
 
 
@@ -62,87 +53,134 @@ body {
 ===================================================== */
 
 .background {
-
     position: fixed;
-
     inset: 0;
 
     overflow: hidden;
 
     pointer-events: none;
 
+    z-index: 1;
 }
 
 
 /* =====================================================
-   SLOW RED GLOWS
+   MOVING RED GLOWS
 ===================================================== */
 
 .glow {
-
     position: absolute;
 
-    width: 450px;
-    height: 450px;
+    width: 420px;
+    height: 420px;
 
     border-radius: 50%;
 
     background:
-        rgba(90, 0, 20, 0.14);
+        radial-gradient(
+            circle,
+            rgba(180, 0, 45, .28),
+            rgba(100, 0, 25, .12),
+            transparent 70%
+        );
 
-    filter:
-        blur(120px);
+    filter: blur(55px);
 
     animation:
-        slowGlow
-        14s
+        movingGlow
+        9s
         ease-in-out
         infinite
         alternate;
-
 }
 
 .glow.one {
-
-    top: -250px;
-
+    top: -180px;
     left: -180px;
-
 }
 
 .glow.two {
-
-    bottom: -250px;
-
     right: -180px;
+    bottom: -180px;
 
-    animation-delay: 5s;
+    animation-delay: 3s;
+}
 
+.glow.three {
+    top: 40%;
+    left: 40%;
+
+    width: 300px;
+    height: 300px;
+
+    animation-duration: 13s;
+    animation-delay: 1s;
+}
+
+@keyframes movingGlow {
+
+    0% {
+        transform:
+            translate(0, 0)
+            scale(.8);
+
+        opacity: .35;
+    }
+
+    50% {
+        opacity: .7;
+    }
+
+    100% {
+        transform:
+            translate(90px, 70px)
+            scale(1.3);
+
+        opacity: .95;
+    }
 }
 
 
-@keyframes slowGlow {
+/* =====================================================
+   RED ATMOSPHERE
+===================================================== */
 
-    from {
+.redPulse {
 
-        transform:
-            scale(0.9)
-            translate(0,0);
+    position: fixed;
 
-        opacity: 0.45;
+    inset: -50%;
 
+    z-index: 2;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(150, 0, 35, .13),
+            transparent 55%
+        );
+
+    animation:
+        atmospherePulse
+        6s
+        ease-in-out
+        infinite;
+}
+
+@keyframes atmospherePulse {
+
+    0%,
+    100% {
+        transform: scale(.9);
+        opacity: .4;
     }
 
-    to {
-
-        transform:
-            scale(1.25)
-            translate(50px,30px);
-
-        opacity: 0.8;
-
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
     }
-
 }
 
 
@@ -154,24 +192,27 @@ body {
 
     position: fixed;
 
-    top: 8%;
-
-    right: 9%;
+    top: 7%;
+    right: 8%;
 
     width: 65px;
-
     height: 65px;
 
     border-radius: 50%;
 
-    background: #d8c2c7;
+    background: #eadde0;
 
-    opacity: 0.35;
+    opacity: .5;
 
     box-shadow:
-        0 0 40px
-        rgba(220,190,200,0.15);
+        0 0 20px rgba(255,220,230,.35),
+        0 0 60px rgba(255,180,200,.18);
 
+    animation:
+        moonGlow
+        5s
+        ease-in-out
+        infinite;
 }
 
 .moon::after {
@@ -181,17 +222,30 @@ body {
     position: absolute;
 
     top: -6px;
-
-    left: 17px;
+    left: 18px;
 
     width: 65px;
-
     height: 65px;
 
     border-radius: 50%;
 
     background: #080103;
+}
 
+@keyframes moonGlow {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 20px rgba(255,220,230,.25),
+            0 0 50px rgba(255,180,200,.1);
+    }
+
+    50% {
+        box-shadow:
+            0 0 35px rgba(255,220,230,.55),
+            0 0 90px rgba(255,180,200,.3);
+    }
 }
 
 
@@ -203,35 +257,108 @@ body {
 
     position: absolute;
 
-    width: 2px;
-
-    height: 2px;
+    width: 3px;
+    height: 3px;
 
     border-radius: 50%;
 
-    background: #b88a92;
+    background: #fff;
+
+    box-shadow:
+        0 0 5px #fff,
+        0 0 12px rgba(255,180,200,.8);
 
     opacity: 0;
 
     animation:
-        starBlink
-        5s
+        starTwinkle
+        3s
         ease-in-out
         infinite;
-
 }
 
-@keyframes starBlink {
+@keyframes starTwinkle {
 
-    0%,
-    100% {
+    0% {
         opacity: 0;
+        transform: scale(.3);
+    }
+
+    30% {
+        opacity: .4;
     }
 
     50% {
-        opacity: 0.6;
+        opacity: 1;
+        transform: scale(1.5);
     }
 
+    70% {
+        opacity: .5;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(.3);
+    }
+}
+
+
+/* =====================================================
+   SHOOTING STARS
+===================================================== */
+
+.shooting-star {
+
+    position: fixed;
+
+    width: 100px;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent,
+            rgba(255,220,230,.9),
+            transparent
+        );
+
+    transform: rotate(-35deg);
+
+    opacity: 0;
+
+    z-index: 4;
+
+    pointer-events: none;
+
+    animation:
+        shootingStar
+        2s
+        linear
+        forwards;
+}
+
+@keyframes shootingStar {
+
+    0% {
+        transform:
+            translate(0,0)
+            rotate(-35deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(-500px,350px)
+            rotate(-35deg);
+
+        opacity: 0;
+    }
 }
 
 
@@ -245,56 +372,56 @@ body {
 
     bottom: -50px;
 
-    color: #671020;
+    color: #9d1838;
 
     opacity: 0;
 
-    font-size: 20px;
-
-    filter:
-        drop-shadow(
-            0 0 7px
-            rgba(120,10,30,0.6)
-        );
+    text-shadow:
+        0 0 8px rgba(180,20,60,.8),
+        0 0 20px rgba(130,10,40,.5);
 
     animation:
-        slowHeart
+        floatingHeart
         linear
         forwards;
-
 }
 
-
-@keyframes slowHeart {
+@keyframes floatingHeart {
 
     0% {
 
         transform:
             translateY(0)
-            scale(0.7)
-            rotate(0deg);
+            translateX(0)
+            rotate(0deg)
+            scale(.4);
 
         opacity: 0;
-
     }
 
     15% {
+        opacity: .85;
+    }
 
-        opacity: 0.5;
+    50% {
 
+        transform:
+            translateY(-55vh)
+            translateX(40px)
+            rotate(20deg)
+            scale(1);
     }
 
     100% {
 
         transform:
-            translateY(-115vh)
-            scale(1.1)
-            rotate(25deg);
+            translateY(-120vh)
+            translateX(-70px)
+            rotate(45deg)
+            scale(1.3);
 
         opacity: 0;
-
     }
-
 }
 
 
@@ -306,19 +433,23 @@ body {
 
     position: fixed;
 
-    top: -30px;
+    top: -40px;
 
-    color: #4d0b18;
+    color: #85152d;
 
     font-size: 20px;
 
+    text-shadow:
+        0 0 8px rgba(150,20,50,.6);
+
     opacity: 0;
+
+    z-index: 3;
 
     animation:
         fallingPetal
         linear
         forwards;
-
 }
 
 @keyframes fallingPetal {
@@ -327,29 +458,91 @@ body {
 
         transform:
             translateY(0)
+            translateX(0)
             rotate(0deg);
 
         opacity: 0;
-
     }
 
     15% {
+        opacity: .75;
+    }
 
-        opacity: 0.5;
+    50% {
 
+        transform:
+            translateY(55vh)
+            translateX(100px)
+            rotate(160deg);
     }
 
     100% {
 
         transform:
-            translateY(110vh)
-            translateX(100px)
-            rotate(240deg);
+            translateY(115vh)
+            translateX(-100px)
+            rotate(360deg);
 
         opacity: 0;
+    }
+}
 
+
+/* =====================================================
+   SMALL PARTICLES
+===================================================== */
+
+.particle {
+
+    position: fixed;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #b52a4b;
+
+    box-shadow:
+        0 0 8px #a51d3d,
+        0 0 18px rgba(180,20,60,.7);
+
+    pointer-events: none;
+
+    z-index: 3;
+
+    animation:
+        particleFloat
+        linear
+        forwards;
+}
+
+@keyframes particleFloat {
+
+    0% {
+        transform:
+            translateY(0)
+            scale(.2);
+
+        opacity: 0;
     }
 
+    20% {
+        opacity: .8;
+    }
+
+    80% {
+        opacity: .4;
+    }
+
+    100% {
+        transform:
+            translateY(-300px)
+            translateX(100px)
+            scale(1.2);
+
+        opacity: 0;
+    }
 }
 
 
@@ -364,15 +557,14 @@ body {
     z-index: 10;
 
     width: 100%;
-
     height: 100%;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
+    padding: 12px;
 }
 
 
@@ -382,13 +574,15 @@ body {
 
 .card {
 
-    width: min(92%, 650px);
+    position: relative;
 
-    max-height: 88vh;
+    width: min(88%, 570px);
+
+    max-height: 82vh;
 
     overflow-y: auto;
 
-    padding: 45px 35px;
+    padding: 30px 25px;
 
     text-align: center;
 
@@ -396,39 +590,39 @@ body {
 
         linear-gradient(
             145deg,
-            rgba(48,5,15,0.45),
-            rgba(4,1,3,0.88)
+            rgba(55,5,18,.55),
+            rgba(4,1,3,.86)
         );
 
     border:
-
         1px solid
-        rgba(120,20,40,0.28);
+        rgba(160,25,55,.35);
 
-    border-radius: 28px;
+    border-radius: 24px;
 
     backdrop-filter:
-        blur(22px);
+        blur(18px);
 
     box-shadow:
 
-        0 35px 100px
-        rgba(0,0,0,0.85),
+        0 25px 70px
+        rgba(0,0,0,.9),
 
         inset 0 0 50px
-        rgba(80,0,20,0.08);
+        rgba(100,0,30,.1),
+
+        0 0 40px
+        rgba(120,0,35,.12);
 
     animation:
         cardEnter
-        2s
+        1.5s
         cubic-bezier(.2,.7,.2,1);
-
 }
 
 .card::-webkit-scrollbar {
     display: none;
 }
-
 
 @keyframes cardEnter {
 
@@ -438,8 +632,9 @@ body {
 
         transform:
             translateY(30px)
-            scale(0.97);
+            scale(.92);
 
+        filter: blur(8px);
     }
 
     to {
@@ -450,127 +645,129 @@ body {
             translateY(0)
             scale(1);
 
+        filter: blur(0);
     }
-
 }
 
 
 /* =====================================================
-   HEART
+   MAIN HEART
 ===================================================== */
 
 .main-heart {
 
-    font-size: 70px;
+    font-size: 58px;
 
-    color: #781126;
+    color: #a01b3b;
 
-    filter:
-        drop-shadow(
-            0 0 18px
-            rgba(130,10,35,0.55)
-        );
+    text-shadow:
+
+        0 0 10px rgba(180,20,60,.7),
+
+        0 0 30px rgba(150,10,40,.6),
+
+        0 0 60px rgba(120,0,30,.35);
 
     animation:
-        calmHeartbeat
-        3s
+        heartbeat
+        2.5s
         ease-in-out
         infinite;
-
 }
 
-
-@keyframes calmHeartbeat {
+@keyframes heartbeat {
 
     0%,
     100% {
-
-        transform:
-            scale(1);
-
+        transform: scale(1);
     }
 
     50% {
-
-        transform:
-            scale(1.08);
-
+        transform: scale(1.12);
     }
-
 }
 
 
 /* =====================================================
-   TEXT
+   TITLE
 ===================================================== */
 
 .small-title {
 
-    margin-top: 8px;
+    margin-top: 5px;
+    margin-bottom: 8px;
 
-    margin-bottom: 12px;
+    font-size: 10px;
 
-    font-size: 11px;
+    letter-spacing: 4px;
 
-    letter-spacing: 5px;
+    text-transform: uppercase;
 
-    text-transform:
-        uppercase;
-
-    color: #7e424d;
-
+    color: #9a5a67;
 }
-
 
 h1 {
 
     margin: 0;
 
     font-size:
-        clamp(42px,9vw,68px);
+        clamp(38px, 9vw, 62px);
 
-    font-weight:
-        normal;
-
-    color: #e7d2d6;
-
+    font-weight: normal;
 }
-
 
 .name {
 
-    color: #91172f;
+    color: #b01d40;
 
-    font-style:
-        italic;
+    font-style: italic;
 
     text-shadow:
+        0 0 15px rgba(170,20,55,.6);
 
-        0 0 25px
-        rgba(130,15,40,0.5);
+    animation:
+        nameGlow
+        3s
+        ease-in-out
+        infinite;
+}
 
+@keyframes nameGlow {
+
+    0%,
+    100% {
+        text-shadow:
+            0 0 12px rgba(170,20,55,.4);
+    }
+
+    50% {
+        text-shadow:
+            0 0 35px rgba(220,30,70,.9);
+    }
 }
 
 
+/* =====================================================
+   LINE
+===================================================== */
+
 .line {
 
-    width: 90px;
-
+    width: 75px;
     height: 1px;
 
-    margin:
-        23px
-        auto;
+    margin: 15px auto;
 
     background:
-
         linear-gradient(
             to right,
             transparent,
-            #76152b,
+            #a01b3b,
             transparent
         );
 
+    box-shadow:
+        0 0 10px rgba(160,20,50,.5);
 }
 
 
@@ -580,109 +777,121 @@ h1 {
 
 .message {
 
-    max-width: 520px;
+    max-width: 480px;
 
-    margin:
-        0 auto;
+    margin: 0 auto;
 
-    font-size: 17px;
+    font-size: 15px;
 
-    line-height: 1.9;
+    line-height: 1.75;
 
-    color: #bda5aa;
-
+    color: #c5aeb3;
 }
-
 
 .highlight {
 
-    color: #d7b8be;
+    color: #ead0d6;
 
-    font-style:
-        italic;
+    font-style: italic;
 
+    text-shadow:
+        0 0 10px rgba(180,50,80,.25);
 }
 
 
 /* =====================================================
-   ACTIVITY SECTION
+   ACTIVITY
 ===================================================== */
 
 .activity {
 
-    margin-top: 30px;
+    margin-top: 20px;
 
-    padding-top: 25px;
+    padding-top: 18px;
 
     border-top:
         1px solid
-        rgba(130,20,40,0.15);
-
+        rgba(150,25,50,.18);
 }
-
 
 .activity-title {
 
-    font-size: 13px;
+    font-size: 11px;
 
     letter-spacing: 3px;
 
-    text-transform:
-        uppercase;
+    text-transform: uppercase;
 
-    color: #87505b;
+    color: #9b5a67;
 
-    margin-bottom: 15px;
-
+    margin-bottom: 12px;
 }
-
-
-/* =====================================================
-   CHOICE BUTTONS
-===================================================== */
 
 .choices {
 
     display: flex;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    gap: 12px;
+    gap: 7px;
 
     flex-wrap: wrap;
-
 }
 
 
-.choice {
+/* =====================================================
+   BUTTONS
+===================================================== */
 
-    margin: 0;
+button {
 
     padding:
-        11px
-        18px;
+        10px 17px;
 
-    font-size: 14px;
-
-    background:
-        rgba(45,3,12,0.45);
+    border-radius: 50px;
 
     border:
         1px solid
-        rgba(120,20,40,0.35);
-
-}
-
-
-.choice:hover {
-
-    transform:
-        translateY(-2px);
+        rgba(160,30,60,.45);
 
     background:
-        rgba(80,8,25,0.4);
+        rgba(50,3,15,.65);
 
+    color: #ead9dd;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition:
+        all .3s ease;
+
+    box-shadow:
+        0 0 10px
+        rgba(120,10,35,.08);
+}
+
+button:hover {
+
+    transform:
+        translateY(-3px)
+        scale(1.04);
+
+    background:
+        rgba(100,10,30,.5);
+
+    border-color:
+        rgba(200,40,75,.6);
+
+    box-shadow:
+        0 0 25px
+        rgba(170,20,55,.3);
+}
+
+button:active {
+    transform: scale(.95);
 }
 
 
@@ -692,79 +901,30 @@ h1 {
 
 #result {
 
-    min-height: 55px;
+    min-height: 45px;
 
-    margin-top: 18px;
+    margin-top: 14px;
 
-    color: #cbaeb4;
+    color: #d5bbc1;
 
-    font-size: 16px;
+    font-size: 14px;
 
-    line-height: 1.7;
+    line-height: 1.6;
 
     opacity: 0;
 
+    transform: translateY(8px);
+
     transition:
-        opacity 0.8s ease;
-
+        all .7s ease;
 }
-
 
 #result.visible {
 
     opacity: 1;
 
-}
-
-
-/* =====================================================
-   SECRET BUTTON
-===================================================== */
-
-button {
-
-    padding:
-        13px
-        25px;
-
-    border-radius:
-        50px;
-
-    border:
-        1px solid
-        rgba(130,25,45,0.45);
-
-    background:
-        rgba(45,3,12,0.5);
-
-    color:
-        #dfc9ce;
-
-    font-family:
-        Georgia,
-        serif;
-
-    font-size:
-        15px;
-
-    cursor:
-        pointer;
-
-    transition:
-        all 0.4s ease;
-
-}
-
-
-button:hover {
-
-    background:
-        rgba(90,10,28,0.4);
-
-    box-shadow:
-        0 0 25px
-        rgba(120,15,40,0.25);
-
+    transform:
+        translateY(0);
 }
 
 
@@ -780,41 +940,56 @@ button:hover {
 
     opacity: 0;
 
+    transform:
+        translateY(15px);
+
     transition:
 
-        max-height
-        1.5s ease,
+        max-height 1.2s ease,
 
-        opacity
-        1s ease;
+        opacity .8s ease,
 
+        transform .8s ease;
 }
-
 
 #secret.show {
 
-    max-height: 300px;
+    max-height: 260px;
 
     opacity: 1;
 
+    transform:
+        translateY(0);
 }
-
 
 .secret-text {
 
-    color: #bca1a7;
+    color: #c6abb2;
 
-    font-size: 16px;
+    font-size: 14px;
 
-    line-height: 1.9;
-
+    line-height: 1.8;
 }
-
 
 .secret-text strong {
 
-    color: #951a35;
+    color: #b01d40;
 
+    text-shadow:
+        0 0 15px
+        rgba(180,20,60,.6);
+}
+
+
+/* =====================================================
+   FINAL BUTTON
+===================================================== */
+
+#finalButton {
+
+    display: none;
+
+    margin-top: 15px;
 }
 
 
@@ -826,26 +1001,52 @@ button:hover {
 
     position: fixed;
 
-    right: 20px;
-
-    bottom: 20px;
+    right: 15px;
+    bottom: 15px;
 
     z-index: 100;
 
-    width: 48px;
-
-    height: 48px;
+    width: 45px;
+    height: 45px;
 
     padding: 0;
 
     border-radius: 50%;
 
     background:
-        rgba(10,1,4,0.8);
+        rgba(8,1,3,.85);
 
     backdrop-filter:
         blur(10px);
 
+    box-shadow:
+        0 0 20px
+        rgba(150,15,45,.25);
+}
+
+#musicButton.playing {
+
+    animation:
+        musicPulse
+        2s
+        ease-in-out
+        infinite;
+}
+
+@keyframes musicPulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 10px
+            rgba(160,20,50,.2);
+    }
+
+    50% {
+        box-shadow:
+            0 0 35px
+            rgba(190,25,65,.7);
+    }
 }
 
 
@@ -855,72 +1056,18 @@ button:hover {
 
 .footer {
 
-    margin-top: 28px;
+    margin-top: 17px;
 
-    font-size: 10px;
+    font-size: 9px;
 
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 
-    color: #4e2930;
-
+    color: #68404a;
 }
 
 
 /* =====================================================
-   CLICK HEART
-===================================================== */
-
-.click-heart {
-
-    position: fixed;
-
-    z-index: 200;
-
-    pointer-events: none;
-
-    color: #9b1837;
-
-    font-size: 23px;
-
-    animation:
-        clickHeart
-        1.5s
-        ease
-        forwards;
-
-}
-
-
-@keyframes clickHeart {
-
-    0% {
-
-        opacity: 0.9;
-
-        transform:
-            translate(-50%,-50%)
-            scale(0.5);
-
-    }
-
-    100% {
-
-        opacity: 0;
-
-        transform:
-            translate(
-                -50%,
-                calc(-50% - 100px)
-            )
-            scale(1.4);
-
-    }
-
-}
-
-
-/* =====================================================
-   FINAL OVERLAY
+   FINAL SCENE
 ===================================================== */
 
 #finalScene {
@@ -942,9 +1089,10 @@ button:hover {
     background:
 
         radial-gradient(
-            circle,
-            #260711,
-            #080103 70%
+            circle at center,
+            #3d0918 0%,
+            #15030a 40%,
+            #020102 100%
         );
 
     opacity: 0;
@@ -952,96 +1100,184 @@ button:hover {
     pointer-events: none;
 
     transition:
-        opacity 2s ease;
-
+        opacity 1.5s ease;
 }
-
 
 #finalScene.show {
 
     opacity: 1;
 
     pointer-events: auto;
-
 }
-
 
 .final-content {
 
-    max-width: 500px;
+    width: 90%;
 
-    padding: 30px;
+    max-width: 430px;
 
+    padding: 20px;
+
+    animation:
+        finalAppear
+        1.5s ease;
 }
 
+@keyframes finalAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.8)
+            translateY(30px);
+
+        filter: blur(10px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+        filter: blur(0);
+    }
+}
 
 .final-heart {
 
-    font-size: 90px;
+    font-size: 75px;
 
-    color: #8c1630;
+    color: #a01b3b;
+
+    text-shadow:
+
+        0 0 15px rgba(190,20,60,.7),
+
+        0 0 45px rgba(160,10,40,.6),
+
+        0 0 90px rgba(130,0,30,.4);
 
     animation:
-        finalPulse
-        3s
+        finalHeartbeat
+        2.5s
         ease-in-out
         infinite;
-
 }
 
-
-@keyframes finalPulse {
+@keyframes finalHeartbeat {
 
     0%,
     100% {
-
-        transform:
-            scale(1);
-
-        filter:
-            drop-shadow(
-                0 0 15px
-                rgba(130,15,40,0.4)
-            );
-
+        transform: scale(1);
     }
 
     50% {
-
-        transform:
-            scale(1.08);
-
-        filter:
-            drop-shadow(
-                0 0 45px
-                rgba(150,20,45,0.6)
-            );
-
+        transform: scale(1.12);
     }
-
 }
-
 
 .final-content h2 {
 
-    font-size: 38px;
+    margin:
+        10px 0 15px;
 
-    font-weight:
-        normal;
+    font-size: 36px;
 
-    color: #e4cdd2;
+    font-weight: normal;
 
+    color: #ead6da;
+
+    text-shadow:
+        0 0 25px rgba(190,30,70,.5);
 }
-
 
 .final-content p {
 
-    color: #b79ba1;
+    color: #c6abb2;
 
-    line-height: 2;
+    line-height: 1.8;
 
-    font-size: 17px;
+    font-size: 15px;
+}
 
+
+/* =====================================================
+   BACK BUTTON
+===================================================== */
+
+#backButton {
+
+    margin-top: 20px;
+
+    padding:
+        11px 24px;
+
+    background:
+        rgba(60,5,18,.65);
+
+    border:
+        1px solid
+        rgba(170,30,60,.5);
+
+    color: #ead9dd;
+}
+
+#backButton:hover {
+
+    background:
+        rgba(120,10,35,.55);
+
+    box-shadow:
+        0 0 30px
+        rgba(180,20,60,.4);
+}
+
+
+/* =====================================================
+   SCREEN FLASH
+===================================================== */
+
+.screenFlash {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 400;
+
+    pointer-events: none;
+
+    background:
+        rgba(170,0,35,.2);
+
+    opacity: 0;
+}
+
+.screenFlash.active {
+
+    animation:
+        flash
+        .8s ease;
+}
+
+@keyframes flash {
+
+    0% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: .8;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 
@@ -1051,43 +1287,159 @@ button:hover {
 
 @media (max-width: 600px) {
 
-    .card {
+    .scene {
 
         padding:
-            38px
-            20px;
+            8px;
+    }
 
+    .card {
+
+        width: 88%;
+
+        max-height: 76vh;
+
+        padding:
+            22px 17px;
+
+        border-radius:
+            20px;
+    }
+
+    .main-heart {
+
+        font-size: 45px;
+    }
+
+    .small-title {
+
+        font-size: 8px;
+
+        letter-spacing: 3px;
+    }
+
+    h1 {
+
+        font-size: 42px;
+    }
+
+    .line {
+
+        margin:
+            11px auto;
+
+        width: 60px;
     }
 
     .message {
 
-        font-size: 15px;
+        font-size: 13px;
 
+        line-height: 1.6;
     }
 
-    .choices {
+    .activity {
 
-        gap: 8px;
+        margin-top: 14px;
 
+        padding-top: 13px;
+    }
+
+    .activity-title {
+
+        font-size: 9px;
+
+        letter-spacing: 2px;
+
+        margin-bottom: 9px;
+    }
+
+    button {
+
+        padding:
+            8px 12px;
+
+        font-size: 11px;
     }
 
     .choice {
 
         padding:
-            10px
-            14px;
+            8px 11px;
+    }
 
-        font-size: 13px;
+    #result {
 
+        font-size: 12px;
+
+        min-height: 38px;
+
+        margin-top: 9px;
+    }
+
+    .secret-text {
+
+        font-size: 12px;
+
+        line-height: 1.6;
+    }
+
+    .footer {
+
+        margin-top: 12px;
+
+        font-size: 7px;
     }
 
     .moon {
 
-        transform:
-            scale(0.7);
+        width: 45px;
+        height: 45px;
 
+        top: 5%;
+        right: 6%;
     }
 
+    .moon::after {
+
+        width: 45px;
+        height: 45px;
+
+        left: 13px;
+
+        top: -5px;
+    }
+
+    .glow {
+
+        width: 300px;
+        height: 300px;
+    }
+
+    .final-heart {
+
+        font-size: 65px;
+    }
+
+    .final-content h2 {
+
+        font-size: 32px;
+    }
+
+    .final-content p {
+
+        font-size: 13px;
+
+        line-height: 1.7;
+    }
+
+    #backButton {
+
+        font-size: 12px;
+
+        padding:
+            9px 20px;
+    }
 }
 
 </style>
@@ -1099,28 +1451,27 @@ button:hover {
 
 
 <!-- =====================================================
-     AUDIO
+     MUSIC
 ===================================================== -->
 
 <audio
     id="music"
     loop
-    preload="auto"
->
+    preload="auto">
 
     <source
         src="song.mp3"
-        type="audio/mpeg"
-    >
+        type="audio/mpeg">
 
 </audio>
 
 
 <button
     id="musicButton"
-    title="Music"
->
+    title="Music">
+
     🎵
+
 </button>
 
 
@@ -1134,9 +1485,16 @@ button:hover {
 
     <div class="glow two"></div>
 
+    <div class="glow three"></div>
+
     <div class="moon"></div>
 
 </div>
+
+
+<div class="redPulse"></div>
+
+<div class="screenFlash"></div>
 
 
 <!-- =====================================================
@@ -1145,173 +1503,170 @@ button:hover {
 
 <div class="scene">
 
-<div class="card">
+    <div class="card">
 
-
-    <div class="main-heart">
-        ♥
-    </div>
-
-
-    <div class="small-title">
-        A little something for
-    </div>
-
-
-    <h1>
-
-        <span class="name">
-            Rana
-        </span>
-
-    </h1>
-
-
-    <div class="line"></div>
-
-
-    <p class="message">
-
-        Some people enter your life
-        quietly...
-
-        <br>
-
-        and somehow,
-
-        <br>
-
-        they become
-        <span class="highlight">
-            your favorite part of it.
-        </span>
-
-        <br><br>
-
-        And then there's you, Rana.
-
-        <br>
-
-        Somehow,
-        you became
-        <span class="highlight">
-            my favorite person.
-        </span>
-
-    </p>
-
-
-    <!-- =================================================
-         ACTIVITY
-    ================================================= -->
-
-    <div class="activity">
-
-        <div class="activity-title">
-
-            One little question
-
+        <div class="main-heart">
+            ♥
         </div>
 
 
-        <div class="choices">
-
-            <button
-                class="choice"
-                data-answer="midnight"
-            >
-                🌙 Midnight
-            </button>
-
-
-            <button
-                class="choice"
-                data-answer="rain"
-            >
-                🌧️ Rain
-            </button>
-
-
-            <button
-                class="choice"
-                data-answer="moon"
-            >
-                🌑 Moonlight
-            </button>
-
+        <div class="small-title">
+            A little something for
         </div>
 
 
-        <div id="result"></div>
+        <h1>
 
-    </div>
+            <span class="name">
+                Lugain
+            </span>
 
-
-    <!-- =================================================
-         SECRET
-    ================================================= -->
-
-    <button
-        id="secretButton"
-    >
-
-        There's something else... 🖤
-
-    </button>
+        </h1>
 
 
-    <div id="secret">
+        <div class="line"></div>
 
-        <p class="secret-text">
 
-            I don't need a thousand reasons
-            to adore you.
+        <p class="message">
+
+            Some people enter your life
+            quietly...
 
             <br>
 
-            I just need one.
-
-            <br><br>
-
-            <strong>
-                You being you.
-            </strong>
-
-            ❤️
-
-            <br><br>
-
-            And honestly?
+            and somehow,
 
             <br>
 
-            That's more than enough for me.
+            they become
+
+            <span class="highlight">
+                your favorite part of it.
+            </span>
+
+            <br><br>
+
+            And then there's you, Lugain.
+
+            <br>
+
+            Somehow,
+
+            you became
+
+            <span class="highlight">
+                my favorite person.
+            </span>
 
         </p>
 
+
+        <!-- =================================================
+             QUESTION
+        ================================================= -->
+
+        <div class="activity">
+
+            <div class="activity-title">
+                One little question
+            </div>
+
+
+            <div class="choices">
+
+                <button
+                    class="choice"
+                    data-answer="midnight">
+
+                    🌙 Midnight
+
+                </button>
+
+
+                <button
+                    class="choice"
+                    data-answer="rain">
+
+                    🌧️ Rain
+
+                </button>
+
+
+                <button
+                    class="choice"
+                    data-answer="moon">
+
+                    🌑 Moonlight
+
+                </button>
+
+            </div>
+
+
+            <div id="result"></div>
+
+        </div>
+
+
+        <!-- =================================================
+             SECRET
+        ================================================= -->
+
+        <button id="secretButton">
+
+            There's something else... 🖤
+
+        </button>
+
+
+        <div id="secret">
+
+            <p class="secret-text">
+
+                I don't need a thousand reasons
+                to adore you.
+
+                <br>
+
+                I just need one.
+
+                <br><br>
+
+                <strong>
+                    You being you.
+                </strong>
+
+                ❤️
+
+                <br><br>
+
+                And honestly?
+
+                <br>
+
+                That's more than enough for me.
+
+            </p>
+
+        </div>
+
+
+        <!-- FINAL BUTTON -->
+
+        <button id="finalButton">
+
+            One last thing... 🥀
+
+        </button>
+
+
+        <div class="footer">
+
+            made with a little too much love 🥀
+
+        </div>
+
     </div>
-
-
-    <!-- FINAL BUTTON -->
-
-    <button
-        id="finalButton"
-        style="display:none;"
-    >
-
-        One last thing...
-
-    </button>
-
-
-    <div class="footer">
-
-        made with a little too much love 🥀
-
-    </div>
-
-
-</div>
 
 </div>
 
@@ -1330,7 +1685,7 @@ button:hover {
 
 
         <h2>
-            Rana
+            Lugain
         </h2>
 
 
@@ -1342,9 +1697,11 @@ button:hover {
 
             <br><br>
 
-            just remember
-            that somewhere,
-            someone made
+            just remember...
+
+            <br><br>
+
+            somewhere, someone made
             an entire little world
             just for you.
 
@@ -1354,13 +1711,171 @@ button:hover {
 
         </p>
 
+
+        <!-- BACK BUTTON -->
+
+        <button id="backButton">
+
+            ← Back
+
+        </button>
+
     </div>
 
 </div>
 
 
-
 <script>
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const music =
+    document.getElementById("music");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+const secretButton =
+    document.getElementById("secretButton");
+
+const secret =
+    document.getElementById("secret");
+
+const finalButton =
+    document.getElementById("finalButton");
+
+const finalScene =
+    document.getElementById("finalScene");
+
+const backButton =
+    document.getElementById("backButton");
+
+const result =
+    document.getElementById("result");
+
+const flash =
+    document.querySelector(".screenFlash");
+
+const background =
+    document.querySelector(".background");
+
+
+/* =====================================================
+   MUSIC
+===================================================== */
+
+function startMusic() {
+
+    if (!music.paused) {
+        return;
+    }
+
+    music.volume = 0.25;
+
+    music.play()
+        .then(() => {
+
+            musicButton.innerText = "🔊";
+
+            musicButton.classList.add(
+                "playing"
+            );
+
+        })
+        .catch(() => {
+
+            /*
+             Browsers such as Chrome/Safari
+             can block autoplay.
+
+             Music will start after the
+             first user interaction.
+            */
+
+            musicButton.innerText = "🎵";
+
+        });
+}
+
+
+/*
+   Try autoplay immediately.
+
+   If the browser blocks it,
+   the first click will start it.
+*/
+
+window.addEventListener(
+    "load",
+    () => {
+
+        startMusic();
+
+    }
+);
+
+
+/* =====================================================
+   START MUSIC ON FIRST INTERACTION
+===================================================== */
+
+document.addEventListener(
+    "click",
+    () => {
+
+        startMusic();
+
+    },
+    {
+        once: true
+    }
+);
+
+
+/* =====================================================
+   MUSIC BUTTON
+===================================================== */
+
+musicButton.addEventListener(
+    "click",
+    () => {
+
+        if (music.paused) {
+
+            music.volume = 0.32;
+
+            music.play()
+                .then(() => {
+
+                    musicButton.innerText =
+                        "🔊";
+
+                    musicButton.classList.add(
+                        "playing"
+                    );
+
+                });
+
+        }
+
+        else {
+
+            music.pause();
+
+            musicButton.innerText =
+                "🎵";
+
+            musicButton.classList.remove(
+                "playing"
+            );
+
+        }
+
+    }
+);
+
 
 /* =====================================================
    STARS
@@ -1368,39 +1883,29 @@ button:hover {
 
 for (
     let i = 0;
-    i < 70;
+    i < 110;
     i++
 ) {
 
     const star =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     star.className =
         "star";
 
     star.style.left =
-        Math.random() *
-        100 +
-        "vw";
+        Math.random() * 100 + "vw";
 
     star.style.top =
-        Math.random() *
-        100 +
-        "vh";
+        Math.random() * 100 + "vh";
 
     star.style.animationDelay =
-        Math.random() *
-        5 +
-        "s";
+        Math.random() * 5 + "s";
 
-    document
-        .querySelector(
-            ".background"
-        )
-        .appendChild(star);
+    star.style.animationDuration =
+        2 + Math.random() * 4 + "s";
 
+    background.appendChild(star);
 }
 
 
@@ -1411,55 +1916,65 @@ for (
 function createHeart() {
 
     const heart =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     heart.className =
         "heart";
 
     heart.innerText =
-        Math.random() > 0.2
+        Math.random() > .2
         ? "♥"
         : "♡";
 
     heart.style.left =
-        Math.random() *
-        100 +
-        "vw";
+        Math.random() * 100 + "vw";
 
     heart.style.fontSize =
         12 +
-        Math.random() *
-        22 +
+        Math.random() * 25 +
         "px";
 
     heart.style.animationDuration =
-        10 +
-        Math.random() *
-        8 +
+        7 +
+        Math.random() * 8 +
         "s";
 
-    document
-        .querySelector(
-            ".background"
-        )
-        .appendChild(
-            heart
-        );
+    background.appendChild(
+        heart
+    );
 
     setTimeout(
         () => heart.remove(),
-        19000
+        17000
     );
-
 }
 
 
+/*
+   More hearts
+*/
+
 setInterval(
     createHeart,
-    1200
+    650
 );
+
+
+/* =====================================================
+   INITIAL HEARTS
+===================================================== */
+
+for (
+    let i = 0;
+    i < 18;
+    i++
+) {
+
+    setTimeout(
+        createHeart,
+        i * 300
+    );
+}
 
 
 /* =====================================================
@@ -1469,25 +1984,27 @@ setInterval(
 function createPetal() {
 
     const petal =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     petal.className =
         "petal";
 
     petal.innerText =
-        "❧";
+        Math.random() > .5
+        ? "❧"
+        : "✦";
 
     petal.style.left =
-        Math.random() *
-        100 +
-        "vw";
+        Math.random() * 100 + "vw";
+
+    petal.style.fontSize =
+        12 +
+        Math.random() * 15 +
+        "px";
 
     petal.style.animationDuration =
-        10 +
-        Math.random() *
-        8 +
+        7 +
+        Math.random() * 8 +
         "s";
 
     document.body.appendChild(
@@ -1496,58 +2013,154 @@ function createPetal() {
 
     setTimeout(
         () => petal.remove(),
-        19000
+        16000
     );
-
 }
 
 
 setInterval(
     createPetal,
-    2500
+    900
 );
 
 
 /* =====================================================
-   ACTIVITY
+   PARTICLES
+===================================================== */
+
+function createParticle() {
+
+    const particle =
+        document.createElement("div");
+
+    particle.className =
+        "particle";
+
+    particle.style.left =
+        Math.random() * 100 + "vw";
+
+    particle.style.top =
+        70 +
+        Math.random() * 30 +
+        "vh";
+
+    particle.style.animationDuration =
+        3 +
+        Math.random() * 4 +
+        "s";
+
+    document.body.appendChild(
+        particle
+    );
+
+    setTimeout(
+        () => particle.remove(),
+        8000
+    );
+}
+
+
+setInterval(
+    createParticle,
+    350
+);
+
+
+/* =====================================================
+   SHOOTING STARS
+===================================================== */
+
+function createShootingStar() {
+
+    const star =
+        document.createElement(
+            "div"
+        );
+
+    star.className =
+        "shooting-star";
+
+    star.style.left =
+        (60 + Math.random() * 50) +
+        "vw";
+
+    star.style.top =
+        Math.random() * 40 +
+        "vh";
+
+    document.body.appendChild(
+        star
+    );
+
+    setTimeout(
+        () => star.remove(),
+        2200
+    );
+}
+
+
+/*
+   Random shooting star
+*/
+
+function randomShootingStar() {
+
+    createShootingStar();
+
+    setTimeout(
+        randomShootingStar,
+        4000 +
+        Math.random() * 7000
+    );
+}
+
+randomShootingStar();
+
+
+/* =====================================================
+   ANSWERS
 ===================================================== */
 
 const answers = {
 
     midnight:
-        "Midnight... the kind of time when everything becomes quiet, except the person on your mind. 🖤",
+        "Midnight... when everything becomes quiet, and somehow one person becomes louder in your thoughts. 🖤",
 
     rain:
-        "Rain. Dark room, quiet music, and one person you secretly wish was beside you. 🌧️",
+        "Rain. A dark room, quiet music, and someone you secretly wish was sitting beside you. 🌧️",
 
     moon:
-        "Moonlight. Because somehow even the darkness looks beautiful when there's something worth looking at. 🌑"
+        "Moonlight. Because somehow even darkness becomes beautiful when you have someone worth looking at. 🌑"
 
 };
 
 
-const result =
-    document.getElementById(
-        "result"
-    );
-
-
 document
-    .querySelectorAll(
-        ".choice"
-    )
-    .forEach(
-        button => {
+    .querySelectorAll(".choice")
+    .forEach(button => {
 
-            button.addEventListener(
-                "click",
-                () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-                    result.classList.remove(
-                        "visible"
-                    );
+                startMusic();
 
-                    setTimeout(() => {
+                flash.classList.remove(
+                    "active"
+                );
+
+                void flash.offsetWidth;
+
+                flash.classList.add(
+                    "active"
+                );
+
+                result.classList.remove(
+                    "visible"
+                );
+
+                setTimeout(
+                    () => {
 
                         result.innerText =
                             answers[
@@ -1558,47 +2171,29 @@ document
                             "visible"
                         );
 
-                    }, 300);
+                    },
+                    300
+                );
 
-                    startMusic();
+            }
+        );
 
-                }
-            );
-
-        }
-    );
+    });
 
 
 /* =====================================================
    SECRET
 ===================================================== */
 
-const secretButton =
-    document.getElementById(
-        "secretButton"
-    );
-
-const secret =
-    document.getElementById(
-        "secret"
-    );
-
-const finalButton =
-    document.getElementById(
-        "finalButton"
-    );
-
-
 secretButton.addEventListener(
     "click",
     () => {
 
+        startMusic();
+
         secret.classList.toggle(
             "show"
         );
-
-        startMusic();
-
 
         if (
             secret.classList.contains(
@@ -1612,7 +2207,9 @@ secretButton.addEventListener(
             finalButton.style.display =
                 "inline-block";
 
-        } else {
+        }
+
+        else {
 
             secretButton.innerText =
                 "There's something else... 🖤";
@@ -1627,134 +2224,14 @@ secretButton.addEventListener(
 
 
 /* =====================================================
-   MUSIC
-===================================================== */
-
-const music =
-    document.getElementById(
-        "music"
-    );
-
-const musicButton =
-    document.getElementById(
-        "musicButton"
-    );
-
-
-function startMusic() {
-
-    if (
-        !music.paused
-    ) {
-
-        return;
-
-    }
-
-    music.volume = 0;
-
-    const promise =
-        music.play();
-
-
-    if (
-        promise !== undefined
-    ) {
-
-        promise.then(() => {
-
-            musicButton.innerText =
-                "🔊";
-
-            fadeInMusic();
-
-        }).catch(() => {
-
-            musicButton.innerText =
-                "🎵";
-
-        });
-
-    }
-
-}
-
-
-function fadeInMusic() {
-
-    let volume = 0;
-
-    const fade =
-        setInterval(
-            () => {
-
-                volume += 0.025;
-
-                music.volume =
-                    Math.min(
-                        volume,
-                        0.32
-                    );
-
-                if (
-                    volume >= 0.32
-                ) {
-
-                    clearInterval(
-                        fade
-                    );
-
-                }
-
-            },
-            100
-        );
-
-}
-
-
-musicButton.addEventListener(
-    "click",
-    () => {
-
-        if (
-            music.paused
-        ) {
-
-            music.volume =
-                0.32;
-
-            music.play();
-
-            musicButton.innerText =
-                "🔊";
-
-        } else {
-
-            music.pause();
-
-            musicButton.innerText =
-                "🎵";
-
-        }
-
-    }
-);
-
-
-/* =====================================================
    FINAL SCENE
 ===================================================== */
-
-const finalScene =
-    document.getElementById(
-        "finalScene"
-    );
-
 
 finalButton.addEventListener(
     "click",
     () => {
+
+        startMusic();
 
         finalScene.classList.add(
             "show"
@@ -1767,14 +2244,30 @@ finalButton.addEventListener(
 
 
 /* =====================================================
-   FINAL HEARTS
+   BACK BUTTON
+===================================================== */
+
+backButton.addEventListener(
+    "click",
+    () => {
+
+        finalScene.classList.remove(
+            "show"
+        );
+
+    }
+);
+
+
+/* =====================================================
+   FINAL HEART EXPLOSION
 ===================================================== */
 
 function createFinalHearts() {
 
     for (
         let i = 0;
-        i < 30;
+        i < 60;
         i++
     ) {
 
@@ -1787,27 +2280,25 @@ function createFinalHearts() {
                     );
 
                 heart.innerText =
-                    "♥";
+                    Math.random() > .2
+                    ? "♥"
+                    : "♡";
 
                 heart.style.position =
                     "fixed";
 
                 heart.style.left =
-                    50 +
-                    (Math.random()*40-20) +
-                    "vw";
+                    "50vw";
 
                 heart.style.top =
-                    50 +
-                    (Math.random()*20-10) +
-                    "vh";
+                    "55vh";
 
                 heart.style.color =
-                    "#85132c";
+                    "#a51b3d";
 
                 heart.style.fontSize =
-                    15 +
-                    Math.random()*30 +
+                    12 +
+                    Math.random() * 30 +
                     "px";
 
                 heart.style.pointerEvents =
@@ -1816,8 +2307,17 @@ function createFinalHearts() {
                 heart.style.zIndex =
                     "600";
 
-                heart.animate(
+                const x =
+                    Math.random() *
+                    600 -
+                    300;
 
+                const y =
+                    -150 -
+                    Math.random() *
+                    500;
+
+                heart.animate(
                     [
 
                         {
@@ -1825,19 +2325,18 @@ function createFinalHearts() {
                                 "translate(-50%,-50%) scale(0)",
 
                             opacity: 0
-
                         },
 
                         {
 
                             transform:
                                 `translate(
-                                    ${Math.random()*300-150}px,
-                                    ${-100-Math.random()*250}px
+                                    ${x * .4}px,
+                                    ${y * .4}px
                                 )
                                 scale(1.2)`,
 
-                            opacity: 0.8
+                            opacity: .9
 
                         },
 
@@ -1845,28 +2344,26 @@ function createFinalHearts() {
 
                             transform:
                                 `translate(
-                                    ${Math.random()*400-200}px,
-                                    ${-300-Math.random()*250}px
+                                    ${x}px,
+                                    ${y}px
                                 )
-                                scale(0.5)`,
+                                scale(.3)`,
 
                             opacity: 0
 
                         }
 
                     ],
-
                     {
 
                         duration:
-                            3500 +
-                            Math.random()*2000,
+                            2500 +
+                            Math.random() * 3000,
 
                         easing:
-                            "ease-out"
+                            "cubic-bezier(.2,.8,.2,1)"
 
                     }
-
                 );
 
                 document.body.appendChild(
@@ -1875,16 +2372,14 @@ function createFinalHearts() {
 
                 setTimeout(
                     () => heart.remove(),
-                    6000
+                    6500
                 );
 
             },
-
-            i * 100
+            i * 70
         );
 
     }
-
 }
 
 
@@ -1900,9 +2395,7 @@ document.addEventListener(
             event.target.tagName ===
             "BUTTON"
         ) {
-
             return;
-
         }
 
         const heart =
@@ -1910,52 +2403,69 @@ document.addEventListener(
                 "div"
             );
 
-        heart.className =
-            "click-heart";
-
         heart.innerText =
             "♥";
 
+        heart.style.position =
+            "fixed";
+
         heart.style.left =
-            event.clientX +
-            "px";
+            event.clientX + "px";
 
         heart.style.top =
-            event.clientY +
-            "px";
+            event.clientY + "px";
+
+        heart.style.color =
+            "#c02048";
+
+        heart.style.fontSize =
+            "22px";
+
+        heart.style.zIndex =
+            "700";
+
+        heart.style.pointerEvents =
+            "none";
 
         document.body.appendChild(
             heart
         );
 
+        heart.animate(
+            [
+
+                {
+                    transform:
+                        "translate(-50%,-50%) scale(.4)",
+
+                    opacity: .9
+                },
+
+                {
+
+                    transform:
+                        "translate(-50%,-150%) scale(1.4)",
+
+                    opacity: 0
+
+                }
+
+            ],
+            {
+                duration: 1200,
+                easing: "ease-out"
+            }
+        );
+
         setTimeout(
             () => heart.remove(),
-            1500
+            1300
         );
 
     }
 );
 
-
-/* =====================================================
-   INITIAL HEARTS
-===================================================== */
-
-for (
-    let i = 0;
-    i < 8;
-    i++
-) {
-
-    setTimeout(
-        createHeart,
-        i * 600
-    );
-
-}
-
 </script>
-
 
 </body>
 </html>
